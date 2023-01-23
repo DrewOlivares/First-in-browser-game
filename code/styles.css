@@ -33,3 +33,21 @@ body {
     left: 455px;
 }
 
+.enemy img  {
+    text-align: center;
+    position: absolute;
+    height: 100px;
+    left: 980px;
+}
+
+.runner {
+    bottom: 145px;
+}
+
+.ninjastar {
+    bottom: 250px;
+}
+
+.flying-enemy {
+    top: 250px;
+}
