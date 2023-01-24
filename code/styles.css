@@ -1,53 +1,69 @@
 main {
 
 }
-body {
-    
+html {
+    background: darkgray ;
 }
-
-.bckgrnd {
-    height: 650px;
-    align: center;
-}
-
-.character {
-    display: flex;
-    height: 100px;
-    position: absolute;
-    bottom: 145px;
-    left: 10px;
-    
-}
-
+/* background */
 .container {
+    height: 500px;
+    width: 1000px;
     display: flex;
-    position: relative;
-    text-align: center;
+    position: absolute;
+    background: url(../Pics/background.png) repeat-x;
+    -webkit-animation: move-background 10s infinite linear;
 }
 
 .startscrn {
     display: flex;
     position: absolute;
     text-align: center;
-    bottom: 425px;
-    left: 455px;
+    bottom: 400px;
+    left: 425px;
 }
 
+/* character */
+.character {
+    display: flex;
+    height: 100px;
+    position: absolute;
+    bottom: 90px;
+    left: 10px;
+}
+/* Enemies */
 .enemy img  {
     text-align: center;
     position: absolute;
     height: 100px;
-    left: 980px;
+    left: 1010px;
 }
 
 .runner {
-    bottom: 145px;
-}
-
-.ninjastar {
-    bottom: 250px;
+    bottom: 90px;
+    -webkit-animation: move-runner 10s  linear;
 }
 
 .flying-enemy {
-    top: 250px;
+    bottom: 200px;
+}
+
+/* animation definitions
+*/
+
+@-webkit-keyframes move-background {
+    0% {background-position: 0 0;}
+    100% {background-position: -1000px 0;}
+}
+
+@-webkit-keyframes move-runner {
+    0% {left:}
+    100% {left:-1000px}
+}
+
+@-webkit-keyframes move-fly {
+    0% {}
+    25% {}
+    50% {}
+    75% {}
+    100% {}
 }
