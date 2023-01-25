@@ -36,34 +36,42 @@ html {
     position: absolute;
     height: 100px;
     left: 1010px;
+
 }
 
 .runner {
     bottom: 90px;
-    -webkit-animation: move-runner 10s  linear;
+    -webkit-animation: move-left 10s  linear;
 }
 
 .flying-enemy {
     bottom: 200px;
+    -webkit-animation: move-fly 10s  linear;
 }
 
 /* animation definitions
 */
 
 @-webkit-keyframes move-background {
-    0% {background-position: 0 0;}
+    0%   {background-position: 0 0;}
     100% {background-position: -1000px 0;}
 }
 
-@-webkit-keyframes move-runner {
-    0% {left:}
+@-webkit-keyframes move-left {
+    0%   {left:}
     100% {left:-1000px}
 }
 
 @-webkit-keyframes move-fly {
-    0% {}
-    25% {}
-    50% {}
-    75% {}
-    100% {}
+    0%   {bottom:; left:;}
+    10%  {bottom: 250px;}
+    20%  {bottom: 80px;}
+    30%  {bottom: 250px;}
+    40%  {bottom: 80px;}
+    50%  {bottom: 250px;}
+    60%  {bottom: 80px;}
+    70%  {bottom: 250px;}
+    80%  {bottom: 80px;}
+    90%  {bottom: 250px;}
+    100% {bottom: 80px; left: -1000px;}
 }
