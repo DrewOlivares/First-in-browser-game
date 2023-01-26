@@ -72,15 +72,15 @@ let flyerLeft = parseInt(window.getComputedStyle(flyer).getPropertyValue("left")
 });
 setInterval(checkDead, 10);
 
-
 let currentTime= 0
 
 function gameOver() {
-    container.remove(character);
-    container.remove(runner);
-    container.remove(flyer);
-    container.remove(building);
-    let currentTime= time;
+    character.remove()
+    runner.remove()
+    flyer.remove()
+    building.remove()
+    let secondsLived= time;
+    let currentTime= Math.floor(secondsLived/60);
     timer.remove()
     
 const loseScreen= document.getElementById('lose');
@@ -88,10 +88,19 @@ let loseTitle = document.createElement('h1');
 loseTitle.innerText= 'Game Over';
 loseScreen.appendChild(loseTitle);
 
+let survivalTime= document.createElement('h2');
+survivalTime.innerText= 'You survived for '+ currentTime + ' minutes';
+loseScreen.appendChild(survivalTime)
+
 let tryAgain = document.createElement('button');
 tryAgain.innerText= 'Try Again';
-tryAgain.addEventListener('click', startGame)
+tryAgain.addEventListener('click',goAgain)
 loseScreen.appendChild(tryAgain)
+
+function goAgain(){
+    loseScreen.remove()
+    startGame()
+}
 };
 
 // Character Movement
