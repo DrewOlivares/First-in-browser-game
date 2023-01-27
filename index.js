@@ -18,7 +18,7 @@ building.src = '../Pics/building.png';
 
 //Timer
 
-var startingMinutes = 4;
+var startingMinutes = 3;
 let time = startingMinutes * 60;
 
 const timer = document.getElementById('timer');
@@ -68,15 +68,15 @@ var checkDead = setInterval(function(){
     let playerLeft = parseInt(window.getComputedStyle(player).getPropertyValue("left"));
     let playerBottom = parseInt(window.getComputedStyle(player).getPropertyValue("bottom"));
     let runnerLeft = parseInt(window.getComputedStyle(runner).getPropertyValue("left"));
+    let runnerBottom = parseInt(window.getComputedStyle(runner).getPropertyValue("bottom"));
     let flyerLeft = parseInt(window.getComputedStyle(flyer).getPropertyValue("left"));
     let flyerBottom = parseInt(window.getComputedStyle(flyer).getPropertyValue("bottom"));
 
-    if (playerLeft === runnerLeft || playerLeft === flyerLeft){
+    if (playerLeft === runnerLeft && playerBottom === runnerBottom || playerLeft === flyerLeft && playerBottom === flyerBottom){
     gameOver()
     };
-
 });
-setInterval(checkDead, 1);
+setInterval(checkDead,1);
 
 let currentTime= 0
 
@@ -149,7 +149,7 @@ function jump(){
     }
     setTimeout(function(){
         player.classList.remove('jump')
-    },1500)
+    },1300)
 }
 
 //Attack

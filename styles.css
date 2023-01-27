@@ -6,16 +6,6 @@ html {
     display: inline-block;
     position: absolute;
     z-index: 1;
-    text-align: center;
-    left: 415px;
-    top: 100px;
-}
-
-#end-screen {
-    display: inline-block;
-    position: absolute;
-    z-index: 1;
-    text-align: center;
     left: 415px;
     top: 100px;
 }
@@ -37,7 +27,7 @@ html {
     width: 1000px;
     display: flex;
     position: absolute;
-    background: url(../Pics/background.jpg);
+    background: url(Pics/background.jpg);
 }
 
 /* building */
@@ -58,7 +48,7 @@ html {
 }
 
 .jump{
-    -webkit-animation: move-jump 1500ms linear;
+    -webkit-animation: move-jump 1300ms linear;
 }
 
 /* Enemies */
