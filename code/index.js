@@ -1,21 +1,23 @@
+
 //Creating character and enemys
-const character = new Image();
-character.className = 'character';
-character.src = '../Pics/character.png';
+const player = new Image();
+player.id = 'player';
+player.src = '../Pics/character.png';
 
 const runner = new Image();
-runner.className = 'runner';
+runner.id = 'runner';
 runner.src = '../Pics/running-enemy.png';
 
 const flyer = new Image();
-flyer.className = 'flyer';
+flyer.id = 'flyer';
 flyer.src ='../Pics/flying-enemy.png';
 
 const building = new Image();
-building.className = 'building';
+building.id = 'building';
 building.src = '../Pics/building.png';
 
 //Timer
+
 var startingMinutes = 4;
 let time = startingMinutes * 60;
 
@@ -37,7 +39,7 @@ function updateCountdown(){
 
 const startScreen= document.getElementById('start-screen');
 let title = document.createElement('h1');
-title.innerText= 'Ninja Defense';
+title.innerText= 'Ninja Dodge';
 startScreen.appendChild(title);
 
 let gameStart = document.createElement('button');
@@ -52,33 +54,37 @@ function hideMenu() {
 };
 
 function startGame() {
-    hideMenu()
+    hideMenu();
     setInterval(updateCountdown, 1000);
-    container.appendChild(character);
+    container.appendChild(player);
     container.appendChild(runner);
     container.appendChild(flyer);
-    container.appendChild(building);
+    // container.appendChild(building);
 };
 
 // Game Over
 
 var checkDead = setInterval(function(){
-let runnerLeft = parseInt(window.getComputedStyle(runner).getPropertyValue("left"));
-let flyerLeft = parseInt(window.getComputedStyle(flyer).getPropertyValue("left"));
-    if (flyerLeft<20 && flyerLeft>-20 && runnerLeft<20 && runnerLeft>-20){
+    let playerLeft = parseInt(window.getComputedStyle(player).getPropertyValue("left"));
+    let playerBottom = parseInt(window.getComputedStyle(player).getPropertyValue("bottom"));
+    let runnerLeft = parseInt(window.getComputedStyle(runner).getPropertyValue("left"));
+    let flyerLeft = parseInt(window.getComputedStyle(flyer).getPropertyValue("left"));
+    let flyerBottom = parseInt(window.getComputedStyle(flyer).getPropertyValue("bottom"));
+
+    if (playerLeft === runnerLeft || playerLeft === flyerLeft){
     gameOver()
     };
 
 });
-setInterval(checkDead, 10);
+setInterval(checkDead, 1);
 
 let currentTime= 0
 
 function gameOver() {
-    character.remove()
+    player.remove()
     runner.remove()
     flyer.remove()
-    building.remove()
+    // building.remove()
     let secondsLived= time;
     let currentTime= Math.floor(secondsLived/60);
     timer.remove()
@@ -89,7 +95,7 @@ loseTitle.innerText= 'Game Over';
 loseScreen.appendChild(loseTitle);
 
 let survivalTime= document.createElement('h2');
-survivalTime.innerText= 'You survived for '+ currentTime + ' minutes';
+survivalTime.innerText= 'You had '+ currentTime + ' minutes left to survive';
 loseScreen.appendChild(survivalTime)
 
 let tryAgain = document.createElement('button');
@@ -108,20 +114,18 @@ let direction = null;
 let x = 150;
 
 setInterval(function(){
-if(direction === 'west'){
+    if(direction === 'west'){
     x = x - 1
-    character.src = '../Pics/character1.png'
-}
-if (direction === 'east'){
+    player.src = '../Pics/character1.png'
+    }
+    if (direction === 'east'){
     x = x + 1
-    character.src = '../Pics/character.png'
-};
-
-
-character.style.left = x + 'px'
+    player.src = '../Pics/character.png'
+    };
+    player.style.left = x + 'px'
 },1);
 
-document.addEventListener('keydown', function(e){
+document.addEventListener('keydown', function(e) {
     if(e.repeat) return;
 
     if(e.key === 'd'){
@@ -130,16 +134,55 @@ document.addEventListener('keydown', function(e){
     if(e.key === 'a'){
         direction = 'west'
     }
+    if(e.key === 'w'){
+        jump()
+    }
 });
 
-document.addEventListener('keyup', function(e){
-    direction = null
+document.addEventListener('keyup', function(e) {
+    direction = null;
 });
+
+function jump(){
+    if(player.classList != 'jump'){
+        player.classList.add('jump');
+    }
+    setTimeout(function(){
+        player.classList.remove('jump')
+    },1500)
+}
 
 //Attack
-// let ninjaStar= new Image()
-// ninjaStar.src = '../Pics/ninja-star.png'
+// const ninjaStar = new Image();
+// ninjaStar.src = '../Pics/ninja-star.png';
+// ninjaStar.className = 'projectile'
 
-// function ninjaStar(){
+// let shoot = false;
 
-// }
+// var checkPosition = setInterval(function(){
+//     let playerLeft = parseInt(window.getComputedStyle(player).getPropertyValue("left"));
+//     return playerLeft
+// })
+// setInterval(checkPosition, 10);
+
+// setInterval(function(){
+//     if(shoot === true){
+//         attack();
+//     }
+// },500);
+
+// document.addEventListener('keydown', function(e){
+//     if(e.code === 'Space'){
+//        shoot = true;
+//     }
+// });
+
+// document.addEventListener('keyup', function(e){
+//     if(e.code === 'Space'){
+//        shoot = false;
+//     }
+// });
+
+// function attack(){
+//     ninjaStar.style.left = checkPosition+'px'
+//     container.appendChild(ninjaStar)

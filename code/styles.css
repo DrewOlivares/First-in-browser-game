@@ -1,6 +1,3 @@
-main {
-
-}
 html {
     background: darkgray ;
 }
@@ -43,58 +40,82 @@ html {
     background: url(../Pics/background.jpg);
 }
 
-
-.building {
+/* building */
+#building {
     display: flex;
     position: absolute;
     bottom: 90px;
     left: -168px;
     height: 600px;
 }
-/* character */
-.character {
+/* player */
+#player {
     display: flex;
     height: 100px;
     position: absolute;
     bottom: 90px;
     left: 150px;
 }
+
+.jump{
+    -webkit-animation: move-jump 1500ms linear;
+}
+
 /* Enemies */
-.runner {
+#runner {
     bottom: 90px;
     text-align: center;
     position: absolute;
     height: 100px;
     left: 900px;
-    -webkit-animation: move-left 5s  linear infinite;
+    -webkit-animation: move-left 15s  linear infinite;
 }
 
-.flyer {
+#flyer {
     bottom: 200px;
     text-align: center;
     position: absolute;
     height: 100px;
     left: 900px;
-    -webkit-animation: move-fly 5s  linear infinite;
+    -webkit-animation: move-fly 10s  linear infinite;
 }
+
+/* .projectile{
+    display: flex;
+    bottom: 80px;
+    height: 50px;
+    position: relative;
+} */
+
+
 
 /* animation definitions */
 
 @-webkit-keyframes move-left {
-    0%   {left:900px}
-    100% {left: -10px;}
+    0%   {left: 900px}
+    25%  {left: 25px;}
+    50%  {left: 900px;}
+    75%  {left: 25px}
+    100% {left: 900px;}
 }
 
 @-webkit-keyframes move-fly {
-    0%   {bottom:; left:900px;}
-    10%  {bottom: 250px;}
-    20%  {bottom: 80px;}
+    0%   {bottom:; left: 900px;}
+    10%  {bottom: 250px; left: 750px;}
+    20%  {bottom: 80px; left: 500px;}
+    30%  {bottom: 250px; left: 350px;}
+    40%  {bottom: 80px; left: 200px;}
+    50%  {bottom: 250px; left: 50px;}
+    60%  {bottom: 80px; left: 200px;}
+    70%  {bottom: 250px; left: 350px;}
+    80%  {bottom: 80px; left: 500px;}
+    90%  {bottom: 250px; left: 750px;}
+    100% {bottom: 80px; left: 900px;}
+}
+
+@-webkit-keyframes move-jump {
+    0%   {bottom: 100px;}
     30%  {bottom: 250px;}
-    40%  {bottom: 80px;}
-    50%  {bottom: 250px;}
-    60%  {bottom: 80px;}
     70%  {bottom: 250px;}
-    80%  {bottom: 80px;}
-    90%  {bottom: 250px;}
-    100% {bottom: 80px; left: -10px;}
+    100% {bottom: 100px;}
 }
