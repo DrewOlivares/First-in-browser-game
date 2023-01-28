@@ -10,7 +10,7 @@ runner.src = 'Pics/running-enemy.png';
 
 const flyer = new Image();
 flyer.id = 'flyer';
-flyer.src ='Pics/flying-enemy.png';
+flyer.src ='Pics/ninja-star.png';
 
 //Restart 
 
@@ -91,18 +91,27 @@ function startGame() {
 // collision
 
 var checkPosition = setInterval(function(){
-    let playerLeft = parseInt(window.getComputedStyle(player).getPropertyValue("left"));
-    let playerBottom = parseInt(window.getComputedStyle(player).getPropertyValue("bottom"));
-    let runnerLeft = parseInt(window.getComputedStyle(runner).getPropertyValue("left"));
-    let runnerBottom = parseInt(window.getComputedStyle(runner).getPropertyValue("bottom"));
-    let flyerLeft = parseInt(window.getComputedStyle(flyer).getPropertyValue("left"));
-    let flyerBottom = parseInt(window.getComputedStyle(flyer).getPropertyValue("bottom"));
+    let playerX = parseInt(window.getComputedStyle(player).getPropertyValue("left"));
+    let playerY = parseInt(window.getComputedStyle(player).getPropertyValue("bottom"));
+    let runnerX = parseInt(window.getComputedStyle(runner).getPropertyValue("left"));
+    let runnerY = parseInt(window.getComputedStyle(runner).getPropertyValue("bottom"));
+    let flyerX = parseInt(window.getComputedStyle(flyer).getPropertyValue("left"));
+    let flyerY = parseInt(window.getComputedStyle(flyer).getPropertyValue("bottom"));
+    
+    let playerWidth = 50;
+    let runnerWidth = 50;
+    let flyerWidth= 25;
 
-    if (playerLeft === runnerLeft && playerBottom === runnerBottom || playerLeft === flyerLeft && playerBottom === flyerBottom){
+    let playerHeight = 90;
+    let runnerHeight = 90;
+    let flyerHeight = 25;
+
+    if (playerX + playerWidth >= runnerX && playerX <= runnerX+runnerWidth && playerY + playerHeight >= runnerY && playerY <= runnerY + runnerHeight|| playerX + playerWidth >= flyerX && playerX <= flyerX + flyerWidth && playerY + playerHeight >= flyerY && playerY <= flyerY + flyerHeight){
     gameOver()
     };
 });
-setInterval(checkPosition,1);
+
+setInterval(checkPosition,10);
 
 function gameOver() {
     player.remove()

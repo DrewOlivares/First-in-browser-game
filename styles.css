@@ -83,7 +83,7 @@ button:hover {
     bottom: 200px;
     text-align: center;
     position: absolute;
-    height: 100px;
+    height: 50px;
     left: 900px;
     -webkit-animation: move-fly 10s  linear infinite;
 }
@@ -108,7 +108,7 @@ button:hover {
 }
 
 @-webkit-keyframes move-fly {
-    0%   {bottom:; left: 900px;}
+    0%   {bottom:; left: 900px; rotate:;}
     10%  {bottom: 250px; left: 750px;}
     20%  {bottom: 80px; left: 500px;}
     30%  {bottom: 250px; left: 350px;}
@@ -118,7 +118,7 @@ button:hover {
     70%  {bottom: 250px; left: 350px;}
     80%  {bottom: 80px; left: 500px;}
     90%  {bottom: 250px; left: 750px;}
-    100% {bottom: 80px; left: 900px;}
+    100% {bottom: 80px; left: 900px; rotate: 720deg;}
 }
 
 @-webkit-keyframes move-jump {
