@@ -135,11 +135,11 @@ let x = 0;
 setInterval(function(){
     if(direction === 'west' && x >= 1){
     x = x - 1
-    player.src = '../Pics/character1.png'
+    player.src = 'Pics/character1.png'
     }
     if (direction === 'east' && x <= 917){
     x = x + 1
-    player.src = '../Pics/character.png'
+    player.src = 'Pics/character.png'
     };
     player.style.left = x + 'px'
 },1);
