@@ -12,10 +12,6 @@ const flyer = new Image();
 flyer.id = 'flyer';
 flyer.src ='Pics/flying-enemy.png';
 
-const building = new Image();
-building.id = 'building';
-building.src = 'Pics/building.png';
-
 //Restart 
 
 function goAgain(){
@@ -23,7 +19,6 @@ function goAgain(){
 }
 
 //Timer
-
 var startingMinutes = 1;
 let time = startingMinutes * 60;
 
@@ -37,19 +32,14 @@ function updateCountdown(){
 
     timer.innerHTML= `${minutes}: ${seconds}`;
     time--;
-
-        
-    function goAgain(){
-    document.location.reload()
-    }
-
+    
     if(minutes == 0 && seconds == 0){
         player.remove()
         runner.remove()
         flyer.remove()
         timer.remove()
 
-        const winScreen= document.getElementById('win');
+        const winScreen= document.getElementById('condition');
         let winTitle = document.createElement('h1');
         winTitle.innerText= 'You Won!';
         winScreen.appendChild(winTitle);
@@ -62,7 +52,7 @@ function updateCountdown(){
         tryAgain.innerText= 'Try Again';
         tryAgain.addEventListener('click',goAgain)
         winScreen.appendChild(tryAgain)
-    } 
+    }
 };
 
 
@@ -88,16 +78,17 @@ function hideMenu() {
     startScreen.remove();
 };
 
+
 function startGame() {
     hideMenu();
-    setInterval(updateCountdown, 1000);
+    setInterval(updateCountdown, 1000)
     container.appendChild(player);
     container.appendChild(runner);
     container.appendChild(flyer);
-    // container.appendChild(building);
 };
 
 // Game Over
+// collision
 
 var checkPosition = setInterval(function(){
     let playerLeft = parseInt(window.getComputedStyle(player).getPropertyValue("left"));
@@ -110,24 +101,18 @@ var checkPosition = setInterval(function(){
     if (playerLeft === runnerLeft && playerBottom === runnerBottom || playerLeft === flyerLeft && playerBottom === flyerBottom){
     gameOver()
     };
-
-    if (playerLeft >= '900px'){
-        player.style.left= '0px'
-    }
 });
-setInterval(checkPosition,10);
-
-let currentTime= 1;
+setInterval(checkPosition,1);
 
 function gameOver() {
     player.remove()
     runner.remove()
     flyer.remove()
-    // building.remove()
+    timer.remove()
 
     let secondsLeft= time;
     
-    const loseScreen= document.getElementById('lose');
+    const loseScreen= document.getElementById('condition');
     let loseTitle = document.createElement('h1');
     loseTitle.innerText= 'Game Over';
     loseScreen.appendChild(loseTitle);
@@ -139,20 +124,20 @@ function gameOver() {
     let tryAgain = document.createElement('button');
     tryAgain.innerText= 'Try Again';
     tryAgain.addEventListener('click',goAgain)
-loseScreen.appendChild(tryAgain)
-
+    loseScreen.appendChild(tryAgain)
 };
+
 
 // Character Movement
 let direction = null;
-let x = 150;
+let x = 0;
 
 setInterval(function(){
-    if(direction === 'west'){
+    if(direction === 'west' && x >= 1){
     x = x - 1
     player.src = '../Pics/character1.png'
     }
-    if (direction === 'east'){
+    if (direction === 'east' && x <= 917){
     x = x + 1
     player.src = '../Pics/character.png'
     };
@@ -185,39 +170,3 @@ function jump(){
         player.classList.remove('jump')
     },1300)
 }
-
-
-//Attack
-// const ninjaStar = new Image();
-// ninjaStar.src = '../Pics/ninja-star.png';
-// ninjaStar.className = 'projectile'
-
-// let shoot = false;
-
-// var checkPosition = setInterval(function(){
-//     let playerLeft = parseInt(window.getComputedStyle(player).getPropertyValue("left"));
-//     return playerLeft
-// })
-// setInterval(checkPosition, 10);
-
-// setInterval(function(){
-//     if(shoot === true){
-//         attack();
-//     }
-// },500);
-
-// document.addEventListener('keydown', function(e){
-//     if(e.code === 'Space'){
-//        shoot = true;
-//     }
-// });
-
-// document.addEventListener('keyup', function(e){
-//     if(e.code === 'Space'){
-//        shoot = false;
-//     }
-// });
-
-// function attack(){
-//     ninjaStar.style.left = checkPosition+'px'
-//     container.appendChild(ninjaStar)
