@@ -1,2 +1,2 @@
 # First-in-browser-game
-This is going to be a simple side scroller game where you dodge enemies as a pixel ninja. The enemies can be dodged by jumping and crouching. There are going to be platforms spawning as well as enemies to jump on platform just jump and time it properly. There is going to be a finish line you are trying to reach to win. 
+This is going to be a simple 2d game where you dodge enemies as a pixel ninja. The enemies can be dodged by jumping and moving left and right. The goal is to survive for a minute and if you do you'll be the ultimate ninja!

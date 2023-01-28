@@ -2,19 +2,19 @@
 //Creating character and enemys
 const player = new Image();
 player.id = 'player';
-player.src = '../Pics/character.png';
+player.src = 'Pics/character.png';
 
 const runner = new Image();
 runner.id = 'runner';
-runner.src = '../Pics/running-enemy.png';
+runner.src = 'Pics/running-enemy.png';
 
 const flyer = new Image();
 flyer.id = 'flyer';
-flyer.src ='../Pics/flying-enemy.png';
+flyer.src ='Pics/flying-enemy.png';
 
 const building = new Image();
 building.id = 'building';
-building.src = '../Pics/building.png';
+building.src = 'Pics/building.png';
 
 //Restart 
 
@@ -99,7 +99,7 @@ function startGame() {
 
 // Game Over
 
-var checkDead = setInterval(function(){
+var checkPosition = setInterval(function(){
     let playerLeft = parseInt(window.getComputedStyle(player).getPropertyValue("left"));
     let playerBottom = parseInt(window.getComputedStyle(player).getPropertyValue("bottom"));
     let runnerLeft = parseInt(window.getComputedStyle(runner).getPropertyValue("left"));
@@ -115,7 +115,7 @@ var checkDead = setInterval(function(){
         player.style.left= '0px'
     }
 });
-setInterval(checkDead,1);
+setInterval(checkPosition,10);
 
 let currentTime= 1;
 
@@ -124,9 +124,8 @@ function gameOver() {
     runner.remove()
     flyer.remove()
     // building.remove()
-    let secondsLived= time;
-    let currentTime= Math.floor(secondsLived/60);
-    timer.remove()
+
+    let secondsLeft= time;
     
     const loseScreen= document.getElementById('lose');
     let loseTitle = document.createElement('h1');
@@ -134,7 +133,7 @@ function gameOver() {
     loseScreen.appendChild(loseTitle);
 
     let survivalTime= document.createElement('h2');
-    survivalTime.innerText= 'You had '+ currentTime + ' minutes left to survive';
+    survivalTime.innerText= 'You had '+ secondsLeft + ' seconds left to survive';
     loseScreen.appendChild(survivalTime)
 
     let tryAgain = document.createElement('button');
