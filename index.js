@@ -16,9 +16,15 @@ const building = new Image();
 building.id = 'building';
 building.src = '../Pics/building.png';
 
+//Restart 
+
+function goAgain(){
+    document.location.reload()
+}
+
 //Timer
 
-var startingMinutes = 3;
+var startingMinutes = 1;
 let time = startingMinutes * 60;
 
 const timer = document.getElementById('timer');
@@ -32,6 +38,31 @@ function updateCountdown(){
     timer.innerHTML= `${minutes}: ${seconds}`;
     time--;
 
+        
+    function goAgain(){
+    document.location.reload()
+    }
+
+    if(minutes == 0 && seconds == 0){
+        player.remove()
+        runner.remove()
+        flyer.remove()
+        timer.remove()
+
+        const winScreen= document.getElementById('win');
+        let winTitle = document.createElement('h1');
+        winTitle.innerText= 'You Won!';
+        winScreen.appendChild(winTitle);
+
+        let congrats= document.createElement('h2');
+        congrats.innerText= 'Congratulations! You are the ultimate ninja!';
+        winScreen.appendChild(congrats)
+
+        let tryAgain = document.createElement('button');
+        tryAgain.innerText= 'Try Again';
+        tryAgain.addEventListener('click',goAgain)
+        winScreen.appendChild(tryAgain)
+    } 
 };
 
 
@@ -41,6 +72,10 @@ const startScreen= document.getElementById('start-screen');
 let title = document.createElement('h1');
 title.innerText= 'Ninja Dodge';
 startScreen.appendChild(title);
+
+let challenge= document.createElement('h2');
+challenge.innerText= 'Can you survive a minute?';
+startScreen.appendChild(challenge)
 
 let gameStart = document.createElement('button');
 gameStart.innerText= 'Start Game';
@@ -75,10 +110,14 @@ var checkDead = setInterval(function(){
     if (playerLeft === runnerLeft && playerBottom === runnerBottom || playerLeft === flyerLeft && playerBottom === flyerBottom){
     gameOver()
     };
+
+    if (playerLeft >= '900px'){
+        player.style.left= '0px'
+    }
 });
 setInterval(checkDead,1);
 
-let currentTime= 0
+let currentTime= 1;
 
 function gameOver() {
     player.remove()
@@ -89,24 +128,20 @@ function gameOver() {
     let currentTime= Math.floor(secondsLived/60);
     timer.remove()
     
-const loseScreen= document.getElementById('lose');
-let loseTitle = document.createElement('h1');
-loseTitle.innerText= 'Game Over';
-loseScreen.appendChild(loseTitle);
+    const loseScreen= document.getElementById('lose');
+    let loseTitle = document.createElement('h1');
+    loseTitle.innerText= 'Game Over';
+    loseScreen.appendChild(loseTitle);
 
-let survivalTime= document.createElement('h2');
-survivalTime.innerText= 'You had '+ currentTime + ' minutes left to survive';
-loseScreen.appendChild(survivalTime)
+    let survivalTime= document.createElement('h2');
+    survivalTime.innerText= 'You had '+ currentTime + ' minutes left to survive';
+    loseScreen.appendChild(survivalTime)
 
-let tryAgain = document.createElement('button');
-tryAgain.innerText= 'Try Again';
-tryAgain.addEventListener('click',goAgain)
+    let tryAgain = document.createElement('button');
+    tryAgain.innerText= 'Try Again';
+    tryAgain.addEventListener('click',goAgain)
 loseScreen.appendChild(tryAgain)
 
-function goAgain(){
-    loseScreen.remove()
-    startGame()
-}
 };
 
 // Character Movement
@@ -151,6 +186,7 @@ function jump(){
         player.classList.remove('jump')
     },1300)
 }
+
 
 //Attack
 // const ninjaStar = new Image();
